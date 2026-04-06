@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>디지털 명함</title>
+    <title>이수민 디지털 명함</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,22 +12,33 @@
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            /* [수정] 스크롤 없이 한 화면에 맞추기 위한 설정 */
             min-height: 100vh;
+            height: 100dvh; 
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
+            margin: 0;
+            overflow: hidden; /* 외부 스크롤 방지 */
         }
 
         .card-container {
-            perspective: 1000px;
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
+            /* [수정] 내용이 많을 경우 카드 내부에서만 스크롤되도록 설정 */
+            max-height: 98vh;
+            overflow-y: auto;
+            scrollbar-width: none; /* 파이어폭스 스크롤바 숨김 */
+        }
+        .card-container::-webkit-scrollbar {
+            display: none; /* 크롬/사파리 스크롤바 숨김 */
         }
 
         .profile-image {
-            width: 120px;
-            height: 120px;
+            /* [수정] 이미지 크기를 살짝 줄여 공간 확보 */
+            width: 100px;
+            height: 100px;
             object-fit: cover;
             border-radius: 50%;
             border: 4px solid white;
@@ -35,106 +46,109 @@
         }
 
         .glass-effect {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(10px);
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            /* [수정] 내부 여백 축소 */
+            padding: 1.5rem !important;
         }
 
         .contact-btn {
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* [추가] 리스트 항목 간격 조절 */
+        .spec-list li {
+            margin-bottom: 4px;
         }
     </style>
 </head>
 <body>
 
     <div class="card-container">
-        <div class="glass-effect p-8 flex flex-col items-center text-center">
+        <div class="glass-effect flex flex-col items-center text-center">
             <!-- 프로필 이미지 -->
-            <div class="mb-6">
-                <img src="my_profile.jpg" 
-                     alt="프로필 이미지" 
+            <div class="mb-4">
+                <img src="profile.jpg" 
+                     alt="이수민 프로필" 
                      class="profile-image"
                      onerror="this.src='https://via.placeholder.com/150'">
             </div>
 
             <!-- 이름 및 직함 -->
-            <h1 class="text-2xl font-bold text-gray-800 mb-1">이수민</h1>
-            <p class="text-blue-600 font-medium mb-6">AI 교육 전문가</p>
+            <h1 class="text-xl font-bold text-gray-800 mb-0.5">이수민</h1>
+            <p class="text-blue-600 text-sm font-medium mb-4">AI 교육 전문가</p>
 
             <!-- 경력 섹션 -->
-            <div class="w-full text-left mb-8">
-                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 px-2">Credential</h2>
-                <ul class="space-y-2">
+            <div class="w-full text-left mb-5">
+                <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2 px-1">Credential</h2>
+                <ul class="spec-list">
                     <li class="flex items-start">
-                        <span class="text-blue-500 mr-2">•</span>
-                        <span class="text-sm text-gray-700">폴리텍 대학 AI 강사 (2025 - 현재)</span>
+                        <span class="text-blue-500 mr-2 text-xs">•</span>
+                        <span class="text-xs text-gray-700 leading-tight">폴리텍 대학 AI 강사 (2025 - 현재)</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-blue-500 mr-2">•</span>
-                        <span class="text-sm text-gray-700">디지털 튜터 (2025 - 현재)</span>
+                        <span class="text-blue-500 mr-2 text-xs">•</span>
+                        <span class="text-xs text-gray-700 leading-tight">디지털 튜터 (2025 - 현재)</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-blue-500 mr-2">•</span>
-                        <span class="text-sm text-gray-700">Google for Education Gemini Certified Educator</span>
+                        <span class="text-blue-500 mr-2 text-xs">•</span>
+                        <span class="text-xs text-gray-700 leading-tight">Google for Education Gemini Certified Educator</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-blue-500 mr-2">•</span>
-                        <span class="text-sm text-gray-700">Google Certified Educator Lv 1,2</span>
+                        <span class="text-blue-500 mr-2 text-xs">•</span>
+                        <span class="text-xs text-gray-700 leading-tight">Google Certified Educator Lv 1,2</span>
                     </li>
-
                 </ul>
             </div>
 
-	    <!-- 강의 섹션 -->
-            <div class="w-full text-left mb-8">
-                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 px-2">Expertise</h2>
-                <ul class="space-y-2">
+            <!-- 강의 섹션 -->
+            <div class="w-full text-left mb-6">
+                <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2 px-1">Expertise</h2>
+                <ul class="spec-list">
                     <li class="flex items-start">
-                        <span class="text-blue-500 mr-2">•</span>
-                        <span class="text-sm text-gray-700">AI 활용 콘텐츠 제작</span>
+                        <span class="text-blue-500 mr-2 text-xs">•</span>
+                        <span class="text-xs text-gray-700 leading-tight">AI 활용 콘텐츠 제작</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-blue-500 mr-2">•</span>
-                        <span class="text-sm text-gray-700">AI 협업 도구 활용</span>
+                        <span class="text-blue-500 mr-2 text-xs">•</span>
+                        <span class="text-xs text-gray-700 leading-tight">AI 협업 도구 활용</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-blue-500 mr-2">•</span>
-                        <span class="text-sm text-gray-700">AI 윤리·디지털 리터러시</span>
+                        <span class="text-blue-500 mr-2 text-xs">•</span>
+                        <span class="text-xs text-gray-700 leading-tight">AI 윤리·디지털 리터러시</span>
                     </li>
-
                 </ul>
             </div>
 
             <!-- 연락처 버튼 -->
-            <div class="w-full space-y-3">
-                <a href="tel:010-9419-4159" class="contact-btn flex items-center justify-between w-full p-4 bg-white rounded-xl text-gray-700 font-small">
-                    <span class="flex items-center">
-                        <i class="fas fa-phone-alt text-green-500 mr-3 w-5"></i>
+            <div class="w-full space-y-2">
+                <a href="tel:010-9419-4159" class="contact-btn flex items-center justify-between w-full p-3 bg-white rounded-xl text-gray-700">
+                    <span class="flex items-center text-xs">
+                        <i class="fas fa-phone-alt text-green-500 mr-3 w-4"></i>
                         010-9419-4159
                     </span>
-                    <i class="fas fa-chevron-right text-gray-300 text-xs"></i>
+                    <i class="fas fa-chevron-right text-gray-300 text-[10px]"></i>
                 </a>
 
-                <a href="mailto:honest_2sm@naver.com" class="contact-btn flex items-center justify-between w-full p-4 bg-white rounded-xl text-gray-700 font-small">
-                    <span class="flex items-center">
-                        <i class="fas fa-envelope text-red-400 mr-3 w-5"></i>
+                <a href="mailto:honest_2sm@naver.com" class="contact-btn flex items-center justify-between w-full p-3 bg-white rounded-xl text-gray-700">
+                    <span class="flex items-center text-xs">
+                        <i class="fas fa-envelope text-red-400 mr-3 w-4"></i>
                         honest_2sm@naver.com
                     </span>
-                    <i class="fas fa-chevron-right text-gray-300 text-xs"></i>
+                    <i class="fas fa-chevron-right text-gray-300 text-[10px]"></i>
                 </a>
             </div>
-
-            
         </div>
         
-        <p class="text-center text-gray-500 text-xs mt-6 opacity-60">© 2026 Digital Business Card. All rights reserved.</p>
+        <p class="text-center text-gray-500 text-[10px] mt-4 opacity-60">© 2026 Digital Business Card. All rights reserved.</p>
     </div>
 
 </body>
